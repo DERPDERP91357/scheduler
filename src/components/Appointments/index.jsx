@@ -1,9 +1,6 @@
 import React from "react";
 
-import DayListItem from "components/DayListItem";
-
-
-export default function DayList(props){
+export default function Appointment(props){
   let array = props.days.map(element => {
     return <DayListItem key={element.id}
     value={element.name}
