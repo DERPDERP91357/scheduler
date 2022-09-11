@@ -26,6 +26,6 @@ export default function Empty(props){
       />
     </section>
   </section>
-</main>
+</m
   );
 }
