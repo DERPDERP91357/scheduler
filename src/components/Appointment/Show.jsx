@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Empty(props){
+export default function Show(props){
   return (
     <main className="appointment__card appointment__card--show">
   <section className="appointment__card-left">
@@ -26,6 +26,6 @@ export default function Empty(props){
       />
     </section>
   </section>
-</m
+</main>
   );
 }
