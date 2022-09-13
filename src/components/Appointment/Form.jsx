@@ -38,7 +38,7 @@ export default function Form(props){
             cancel();
             reset();
           }}>Cancel</Button>
-          <Button onClick={event => {props.onSave(student, interviewer)}} confirm >Save</Button>
+          <Button onClick={() => {props.onSave(student, interviewer)}} confirm >Save</Button>
         </section>
       </section>
     </main>
