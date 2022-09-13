@@ -25,3 +25,15 @@ export function getInterview(state, interview) {
   }
 }
 
+export function getInterviewersForDay(state, day) {
+  let dayObj = state.days.filter(dayWeek => {
+    return dayWeek.name === day;
+  })
+  if (dayObj[0] === undefined){
+    return [];
+  }
+  let interviewerId = dayObj[0].interviewers;
+  return interviewerId.map(element => {
+    return state.interviewers[element];
+  })
+}

@@ -37,6 +37,10 @@ export default function Application(props) {
     {...element}/>
   })
   const setDay = day => setState({ ...state, day });
+
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
   return (
     <main className="layout">
       <section className="sidebar">
