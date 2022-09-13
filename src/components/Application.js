@@ -50,7 +50,7 @@ export default function Application(props) {
       })
     })
   }
-  const deleteInterview = function(id) {
+  const cancelInterview = function(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -79,7 +79,7 @@ export default function Application(props) {
     {...element}
     key = {element.id} 
     bookInterview = {bookInterview}
-    deleteInterview = {deleteInterview}
+    deleteInterview = {cancelInterview}
     interview = {thisInterview}
     interviewers = {dailyInterviewers}
     />
