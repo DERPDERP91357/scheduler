@@ -40,7 +40,10 @@ export default function Form(props){
             data-testid="student-name-input"
             placeholder="Enter Student Name"
             value = {student}
-            onChange = {(event) => setStudent(event.target.value)}
+            onChange = {(event) => {
+              setStudent(event.target.value);
+              setError("");
+              }}
           />
           <section className="appointment__validation">{error}</section>
         </form>
@@ -53,7 +56,6 @@ export default function Form(props){
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick = {() => {
-            props.onCancel();
             cancel();
             reset();
           }}>Cancel</Button>
