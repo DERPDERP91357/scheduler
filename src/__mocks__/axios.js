@@ -88,6 +88,13 @@ export default {
         statusText: "No Content",
       });
     }
+    if (url === "/api/appointments/2") {
+      fixtures.appointments[2].interview = {student: "Hello", interviewer: 1}
+      return Promise.resolve({
+        status: 204,
+        statusText: "No Content",
+      });
+    }
     if (url === "/api/reset") {
       fixtures = {
         days: [
