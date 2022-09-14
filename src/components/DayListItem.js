@@ -24,7 +24,7 @@ export default function DayListItem(props){
     "day-list__item--full" : full
   })
   return (
-    <li className={dayClass} onClick={() => props.onClick(props.value)}>
+    <li data-testid="day" className={dayClass} onClick={() => props.onClick(props.value)}>
        <h2 className="text--reglar">{props.value}</h2> 
       <h3 className="text--light">{value}</h3>
     </li>
