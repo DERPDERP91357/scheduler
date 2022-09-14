@@ -25,6 +25,13 @@ export default function useApplicationData () {
 
   const setDay = day => setState({ ...state, day });
 
+  const getNewDaysObj = function() {
+    return axios.get("/api/days").then(results => {
+      return results.data;
+    })
+  }
+
+
   const bookInterview = function(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -35,11 +42,14 @@ export default function useApplicationData () {
       [id]: appointment
     };
     return axios.put(`/api/appointments/${id}`, {interview}).then(()=> {
-
-      setState(prev => {
-        return {...prev,
-          appointments : appointments
-        }
+      getNewDaysObj().then((data)=> {
+        const newDays = data;
+        setState(prev => {
+          return {...prev,
+            days : newDays,
+            appointments : appointments
+          }
+        })
       })
     })
   }
@@ -53,10 +63,14 @@ export default function useApplicationData () {
       [id]: appointment
     };
     return axios.delete(`/api/appointments/${id}`).then(()=> {
-      setState(prev => {
-        return {...prev,
-          appointments : appointments
-        }
+      getNewDaysObj().then((data)=> {
+        const newDays = data;
+        setState(prev => {
+          return {...prev,
+            days : newDays,
+            appointments : appointments
+          }
+        })
       })
     })
   }
