@@ -48,19 +48,24 @@ npm run cypress
 
 ## Final Product
 
-!["Main Url Page"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tiny%20app%20main%20page.jpg?raw=true)
+!["Main Page"](https://github.com/dan-suen/scheduler/blob/master/public/sample/1.png?raw=true)
 - Users can delete and edit links tied to their account using the associated buttons!
 
-!["Individual Pages for Each Shortened Link"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tinyapp%20individual.jpg?raw=true)
-- Shortened link pages feature link that may be shared with others!
-- New links may be created by created the "Create New URL"
-- Site tracks link usage:
-  - total number of visits
+!["Form"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tinyapp%20individual.jpg?raw=true)
+- Users can input their name into the form and select one of the possible interviewers. They can then submit the form, which updates the page and external api.
+- Users can also choose to cancel, which will empty the form and return them to the previous application state.
+- Users MUST fill in their name AND select an interviewer to submit the form. Failure to do so will reveal an error meesage and prevent form submission until fixed.
+
+!["Form Error"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tinyapp%20individual.jpg?raw=true)
   - unique visitors
   - logs type, partial id and time of every visit
 
+!["Pending States"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tinyapp%20login.jpg?raw=true)
+- The app shows transitional states as asynchronous operations are run to update the database in the external api and update local state prior to rerender.
 
-!["Registration Page"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tiny%20app%20register.jpg?raw=true)
+!["Error Msgs"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tiny%20app%20register.jpg?raw=true)
+- Failure to update the external database will also not update local states. Instead, error messages are returned and clicking the close icon will return users to the previous state of the application.
 
-!["Login Page"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tinyapp%20login.jpg?raw=true)
-- Login and Registration is simple and secure! 
+
+!["Delete Confirmation"](https://github.com/DERPDERP91357/tinyapp/blob/main/docs/tinyapp%20login.jpg?raw=true)
+- Users that cancel or delete an appointment will be asked to confirm their choice. 
