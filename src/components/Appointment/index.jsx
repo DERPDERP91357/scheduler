@@ -11,6 +11,7 @@ import Error from "components/Appointment/Error";
 import Confirm from "components/Appointment/Confirm";
 import useVisualMode from "hooks/useVisualMode.js";
 
+//declared states for 'mode' changes
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const SAVING = "SAVING";
@@ -21,50 +22,67 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-export default function Appointment(props){
+export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  const save = function(name, interviewer) {
+
+  //mode change and update of api database on successful save
+  const save = function (name, interviewer) {
     const interview = {
       student: name,
-      interviewer
+      interviewer,
     };
     transition(SAVING);
     if (name === "" || interviewer === null) {
       return transition(ERROR_SAVE, true);
     }
-    props.bookInterview(
-      props.id, interview
-    ).then(()=>{
-      transition(SHOW);
-    }).catch(()=>{
-      transition(ERROR_SAVE, true);
-    })
-  }
-  const deleting = function() {
+    props
+      .bookInterview(props.id, interview)
+      .then(() => {
+        transition(SHOW);
+      })
+      .catch(() => {
+        transition(ERROR_SAVE, true);
+      });
+  };
+
+  //mode change and update of api database on successful delete
+  const deleting = function () {
     transition(DELETE, true);
-    props.deleteInterview(
-      props.id
-    ).then(()=>{
-      transition(EMPTY);
-    }).catch(()=>{
-      transition(ERROR_DELETE, true);
-    })
-  }
+    props
+      .deleteInterview(props.id)
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch(() => {
+        transition(ERROR_DELETE, true);
+      });
+  };
+
   return (
     <article data-testid="appointment" className="appointment">
-      <Header time = {props.time}/>
+      <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SAVING && <Status message = "Saving" />}
-      {mode === DELETE && <Status message = "Deleting" />}
-      {mode === CONFIRM && <Confirm onConfirm={deleting} onCancel = {back} message="Are you sure you would like to delete?"/>}
-      {mode === SHOW && props.interview &&(
+      {mode === SAVING && <Status message="Saving" />}
+      {mode === DELETE && <Status message="Deleting" />}
+      {mode === CONFIRM && (
+        <Confirm
+          onConfirm={deleting}
+          onCancel={back}
+          message="Are you sure you would like to delete?"
+        />
+      )}
+      {mode === SHOW && props.interview && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete = {()=> {transition(CONFIRM)}}
-          onEdit = {()=> {transition(EDIT)}}
+          onDelete={() => {
+            transition(CONFIRM);
+          }}
+          onEdit={() => {
+            transition(EDIT);
+          }}
         />
       )}
       {mode === CREATE && (
@@ -72,8 +90,8 @@ export default function Appointment(props){
           student={""}
           interviewer={null}
           interviewers={props.interviewers}
-          onCancel = {back}
-          onSave = {save}
+          onCancel={back}
+          onSave={save}
         />
       )}
       {mode === EDIT && (
@@ -81,21 +99,13 @@ export default function Appointment(props){
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
-          onCancel = {back}
-          onSave = {save}
+          onCancel={back}
+          onSave={save}
         />
       )}
-      {mode === ERROR_SAVE && (
-        <Error
-          message = "Could Not Save"
-          onClose = {back}
-        />
-      )}
+      {mode === ERROR_SAVE && <Error message="Could Not Save" onClose={back} />}
       {mode === ERROR_DELETE && (
-        <Error
-          message = "Could Not Delete"
-          onClose = {back}
-        />
+        <Error message="Could Not Delete" onClose={back} />
       )}
     </article>
   );

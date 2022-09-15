@@ -1,78 +1,83 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useApplicationData () {
+export default function useApplicationData() {
+  //overall local state object for client side rendering
   const [state, setState] = useState({
     days: [],
     appointments: {},
     day: "Monday",
-    interviewers : {}
+    interviewers: {},
   });
+
+  //fetches data from api and sets state
   useEffect(() => {
     Promise.all([
-      axios.get('/api/days'),
-      axios.get('/api/appointments'),
-      axios.get('/api/interviewers'),
-    ]).then(data => {
-      setState(prev => {
-        return{...prev,
-      days : data[0].data,
-      appointments : data[1].data,
-      interviewers : data[2].data
-    }})
-    })
-  }, [])
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers"),
+    ]).then((data) => {
+      setState((prev) => {
+        return {
+          ...prev,
+          days: data[0].data,
+          appointments: data[1].data,
+          interviewers: data[2].data,
+        };
+      });
+    });
+  }, []);
 
-  const setDay = day => setState({ ...state, day });
+  //function for setting current day value in state
+  const setDay = (day) => setState({ ...state, day });
 
-  const getNewDaysObj = function() {
-    return axios.get("/api/days").then(results => {
+  //fetches new days obj from server on appointment updates
+  const getNewDaysObj = function () {
+    return axios.get("/api/days").then((results) => {
       return results.data;
-    })
-  }
+    });
+  };
 
-
-  const bookInterview = function(id, interview) {
+  const bookInterview = function (id, interview) {
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: { ...interview },
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
-    return axios.put(`/api/appointments/${id}`, {interview}).then(()=> {
-      getNewDaysObj().then((data)=> {
+    //updates api data
+    return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+      getNewDaysObj().then((data) => {
         const newDays = data;
-        setState(prev => {
-          return {...prev,
-            days : newDays,
-            appointments : appointments
-          }
-        })
-      })
-    })
-  }
-  const cancelInterview = function(id) {
+        //sets local state
+        setState((prev) => {
+          return { ...prev, days: newDays, appointments: appointments };
+        });
+      });
+    });
+  };
+  
+  const cancelInterview = function (id) {
     const appointment = {
       ...state.appointments[id],
-      interview: null
+      interview: null,
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
-    return axios.delete(`/api/appointments/${id}`).then(()=> {
-      getNewDaysObj().then((data)=> {
+    //updates api data
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      getNewDaysObj().then((data) => {
         const newDays = data;
-        setState(prev => {
-          return {...prev,
-            days : newDays,
-            appointments : appointments
-          }
-        })
-      })
-    })
-  }
-  return {state, setDay, bookInterview, cancelInterview};
+        //sets local state
+        setState((prev) => {
+          return { ...prev, days: newDays, appointments: appointments };
+        });
+      });
+    });
+  };
+  return { state, setDay, bookInterview, cancelInterview };
 }

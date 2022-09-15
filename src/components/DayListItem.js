@@ -3,29 +3,35 @@ import React from "react";
 import "components/DayListItem.scss";
 import classNames from "classnames";
 
+//determines string for navbar display
 let formatSpots = function (number) {
   if (number === 1) {
-    return "1 spot remaining"
+    return "1 spot remaining";
   }
   if (number === 0) {
-    return "no spots remaining"
+    return "no spots remaining";
   }
-  return number + " spots remaining"
-}
-export default function DayListItem(props){
+  return number + " spots remaining";
+};
+
+export default function DayListItem(props) {
   let full = false;
-  if(props.spots === 0) {
+  if (props.spots === 0) {
     full = true;
   }
   let value = "";
   value = formatSpots(props.spots);
   let dayClass = classNames("day-list__item", {
-    "day-list__item--selected" : props.selected,
-    "day-list__item--full" : full
-  })
+    "day-list__item--selected": props.selected,
+    "day-list__item--full": full,
+  });
   return (
-    <li data-testid="day" className={dayClass} onClick={() => props.onClick(props.value)}>
-       <h2 className="text--reglar">{props.value}</h2> 
+    <li
+      data-testid="day"
+      className={dayClass}
+      onClick={() => props.onClick(props.value)}
+    >
+      <h2 className="text--reglar">{props.value}</h2>
       <h3 className="text--light">{value}</h3>
     </li>
   );

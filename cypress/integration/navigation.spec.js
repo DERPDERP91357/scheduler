@@ -1,13 +1,15 @@
 describe("Navigation", () => {
   beforeEach(() => {
     cy.visit("/");
-  })
-  it("should visit root", () => {
   });
+  //covered in beforeEach
+  it("should visit root", () => {});
 
   it("should navigate to Tuesday", () => {
-    cy.contains("[data-testid=day]",'Tuesday')
-    .click()
-    .should("have.class", "day-list__item--selected");
+    //find and click Tuesday on navbar
+    cy.contains("[data-testid=day]", "Tuesday")
+      .click()
+      //check day has been selected
+      .should("have.class", "day-list__item--selected");
   });
 });
