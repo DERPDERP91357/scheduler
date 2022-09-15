@@ -64,16 +64,19 @@ npm run cypress
 
 <br />
 <br />
+
 - The app shows transitional states as asynchronous operations are run to update the database in the external api and update local state prior to rerender.
 !["Pending States"](https://github.com/dan-suen/scheduler/blob/master/public/sample/4.png?raw=true)
 
 
 <br />
 <br />
+
 !["Error Msgs"](https://github.com/dan-suen/scheduler/blob/master/public/sample/3.png?raw=true)
 - Failure to update the external database will also not update local states. Instead, error messages are returned and clicking the close icon will return users to the previous state of the application.
 
 <br />
 <br />
+
 !["Delete Confirmation"](https://github.com/dan-suen/scheduler/blob/master/public/sample/5.png?raw=true)
 - Users that cancel or delete an appointment will be asked to confirm their choice. 
