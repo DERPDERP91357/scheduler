@@ -11,6 +11,7 @@ export default function InterviewerListItem(props) {
   if (props.selected) {
     interName = props.name;
   }
+
   return (
     <li
       key={props.id}

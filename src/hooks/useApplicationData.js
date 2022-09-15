@@ -58,7 +58,7 @@ export default function useApplicationData() {
       });
     });
   };
-  
+
   const cancelInterview = function (id) {
     const appointment = {
       ...state.appointments[id],
