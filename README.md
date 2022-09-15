@@ -50,22 +50,30 @@ npm run cypress
 
 !["Main Page"](https://github.com/dan-suen/scheduler/blob/master/public/sample/1.png?raw=true)
 - On the Main Page, users can select the day of the week to show appointments listings for that day. Appointments include the attendee's name in the upper left and the interviewer's name in the lower left of timeslot.
-- The taskbar also shows the remaining spots available and updates this number as appoitnments are made or deleted.
-- Users can click of the Add button ('the plus sign') on an empty timeslot to add an appiointment to that timeslot by filling in a simple form.
-- Users can hover over existing appointments to reveal an Edit and a Delete button, which performs their respective functionality
+- The taskbar also shows the remaining spots available and updates this number as appointments are made or deleted.
+- Users can click on the Add button ('the plus sign') for an empty timeslot to add an appiointment by filling in a simple form.
+- Users can hover over existing appointments to reveal an Edit and a Delete button, which performs their respective functionalities.
+-
+-
 
 !["Form"](https://github.com/dan-suen/scheduler/blob/master/public/sample/2.png?raw=true)
 - Users can input their name into the form and select one of the possible interviewers. They can then submit the form, which updates the page and external api.
 - Users can also choose to cancel, which will empty the form and return them to the previous application state.
-- Users MUST fill in their name AND select an interviewer to submit the form. Failure to do so will reveal an error meesage and prevent form submission until fixed.
+- Users MUST fill in their name AND select an interviewer to submit the form. Failure to do so will reveal an error message and prevent form submission until fixed.
 !["Form Error"](https://github.com/dan-suen/scheduler/blob/master/public/sample/6.png?raw=true)
 
-!["Pending States"](https://github.com/dan-suen/scheduler/blob/master/public/sample/4.png?raw=true)
+-
+-
 - The app shows transitional states as asynchronous operations are run to update the database in the external api and update local state prior to rerender.
+!["Pending States"](https://github.com/dan-suen/scheduler/blob/master/public/sample/4.png?raw=true)
 
+
+-
+-
 !["Error Msgs"](https://github.com/dan-suen/scheduler/blob/master/public/sample/3.png?raw=true)
 - Failure to update the external database will also not update local states. Instead, error messages are returned and clicking the close icon will return users to the previous state of the application.
 
-
+-
+-
 !["Delete Confirmation"](https://github.com/dan-suen/scheduler/blob/master/public/sample/5.png?raw=true)
 - Users that cancel or delete an appointment will be asked to confirm their choice. 
