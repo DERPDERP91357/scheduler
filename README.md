@@ -59,14 +59,14 @@ npm run cypress
 !["Form"](https://github.com/dan-suen/scheduler/blob/master/public/sample/2.png?raw=true)
 - Users can input their name into the form and select one of the possible interviewers. They can then submit the form, which updates the page and external api.
 - Users can also choose to cancel, which will empty the form and return them to the previous application state.
-- Users MUST fill in their name AND select an interviewer to submit the form. Failure to do so will reveal an error message and prevent form submission until fixed.
 !["Form Error"](https://github.com/dan-suen/scheduler/blob/master/public/sample/6.png?raw=true)
+- Users MUST fill in their name AND select an interviewer to submit the form. Failure to do so will reveal an error message and prevent form submission until fixed.
 
 <br />
 <br />
 
-- The app shows transitional states as asynchronous operations are run to update the database in the external api and update local state prior to rerender.
 !["Pending States"](https://github.com/dan-suen/scheduler/blob/master/public/sample/4.png?raw=true)
+- The app shows transitional states as asynchronous operations are run to update the database in the external api and update local state prior to rerender.
 
 
 <br />
